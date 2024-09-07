@@ -7,7 +7,7 @@ def ReadCSVfile_edgecaseenter(file_path):
     return df
 
 def Convert_Hist(df, column):
-    df.Hist(column=column)
+    df.hist(column=column)
 
 def Draw_Hist(title, xlabel, ylabel):
     plt.title(title)
