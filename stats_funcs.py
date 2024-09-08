@@ -13,7 +13,7 @@ class _DictWrapper(object):
         obj: Hist, Pmf, Cdf, Pdf, dict, pandas Series, list of pairs
         label: string label"""
 
-        if isinstance(obj, pd.DataFrame)
+        if isinstance(obj, pd.DataFrame):
             print(obj, "pandas")
         elif isinstance(obj, dict):
             print(obj, "dict")
