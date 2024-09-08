@@ -6,10 +6,16 @@ def ReadCSVfile_edgecaseenter(file_path):
     df = pd.read_csv(file_path, lineterminator='\n', low_memory=False)
     return df
 
-def Convert_Hist(df, column):
-    df.hist(column=column)
+class _DictWrapper(object):
+    def __init__(self, obj=None, label=None):
+        """Initializes the distribution.
 
-def Draw_Hist(title, xlabel, ylabel):
-    plt.title(title)
-    plt.xlabel(xlabel)
-    plt.ylabel(ylabel)
+        obj: Hist, Pmf, Cdf, Pdf, dict, pandas Series, list of pairs
+        label: string label"""
+
+        if isinstance(obj, pd.DataFrame)
+            print(obj, "pandas")
+        elif isinstance(obj, dict):
+            print(obj, "dict")
+        else:
+            print("list/Hist(Pmf, Cdf, Pdf, not included)")
