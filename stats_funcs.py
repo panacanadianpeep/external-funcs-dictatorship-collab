@@ -31,9 +31,9 @@ class _DictWrapper(object):
             print("list/Hist(Pmf, Cdf, Pdf, not included)")
 
     def Items(self):
-        return self.d.items()]
+        return self.d.items()
     
-class Hist(_DictWrapper)
+class Hist(_DictWrapper):
     def Freq(self, x):
         """
         Gets the frequency associated with the value x.
@@ -47,4 +47,4 @@ class Hist(_DictWrapper)
 
         return self.d.get(x, 0)
     
-    
+
