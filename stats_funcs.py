@@ -29,3 +29,6 @@ class _DictWrapper(object):
             print(obj, "dict")
         else:
             print("list/Hist(Pmf, Cdf, Pdf, not included)")
+
+    def Items(self):
+        return self.d.items()
