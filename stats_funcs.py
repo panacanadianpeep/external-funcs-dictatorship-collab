@@ -30,8 +30,12 @@ class _DictWrapper(object):
         else:
             print("list/Hist(Pmf, Cdf, Pdf, not included)")
 
+    def __getitem__(self, value):
+        return self.d.get(value, 0)
+
     def Items(self):
         return self.d.items()
+
     
 class Hist(_DictWrapper):
     def Freq(self, x):
