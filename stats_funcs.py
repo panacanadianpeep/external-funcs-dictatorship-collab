@@ -20,7 +20,7 @@ class _DictWrapper(object):
         self.label = label if label else DEFAULT_LABEL
         self.d = {}
 
-        if obj == None:
+        if obj is None:
             return
 
         if isinstance(obj, pd.Series):
