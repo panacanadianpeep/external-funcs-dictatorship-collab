@@ -18,8 +18,8 @@ def Hist(histobj, **options):
     
   """
 
-  x_values = np.array(list(histobj.obj.keys()))
-  y_values = np.array(list(histobj.obj.values()))
+  x_values = np.array(list(histobj.d.keys()))
+  y_values = np.array(list(histobj.d.values()))
 
   plt.bar(x_values, y_values)  # Plot histogram using bar chart
   plt.show()
