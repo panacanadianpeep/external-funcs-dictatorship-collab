@@ -20,6 +20,8 @@ class _DictWrapper(object):
         self.label = label if label else DEFAULT_LABEL
         self.d = {}
 
+        self.log = False
+
         if obj is None:
             return
 
@@ -36,6 +38,9 @@ class _DictWrapper(object):
     def Items(self):
         return self.d.items()
 
+    def Values(self):
+        return self.d.values()
+
     
 class Hist(_DictWrapper):
     def Freq(self, x):
@@ -50,5 +55,5 @@ class Hist(_DictWrapper):
         """
 
         return self.d.get(x, 0)
-    
 
+        
