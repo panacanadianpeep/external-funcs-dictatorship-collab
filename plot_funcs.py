@@ -2,6 +2,7 @@ import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 import matplotlib as matplt
+import seaborn as sns
 
 def Hist(histobj, **options):
   """Plots a Pmf or Hist with a bar plot.
@@ -18,8 +19,6 @@ def Hist(histobj, **options):
     
   """
 
-  x_values = np.array(list(histobj.d.keys()))
-  y_values = np.array(list(histobj.d.values()))
+  dataset = sns.load_dataset(options.dataset)
 
-  plt.bar(x_values, y_values)  # Plot histogram using bar chart
-  plt.show()
+  sns.histplot(dataset, x="score")

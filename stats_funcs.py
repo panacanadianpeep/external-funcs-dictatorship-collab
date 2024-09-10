@@ -55,5 +55,8 @@ class Hist(_DictWrapper):
         """
 
         return self.d.get(x, 0)
+    
+    def Render(self, **options):
+        return zip(*self.SortedItems())
 
         
