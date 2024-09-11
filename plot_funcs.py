@@ -29,15 +29,19 @@ def Hist(histobj, **options):
         options: Additional keyword arguments passed to plt.hist
     """
 
-  # Extract bin edges and frequencies into separate lists
-  bin_edges = list(histobj.keys())
-  frequencies = list(histobj.values())
+   # Extract bin edges and frequencies into separate lists
+  bin_edges = list(data_dict.keys())
+  frequencies = list(data_dict.values())
 
   # Sort bin edges (if not sorted)
   bin_edges.sort()
 
-  # Shift bin edges to the left
-  adjusted_bin_edges = [edge - 0.5 for edge in bin_edges]
+  # Calculate bin width and offset for adjustment
+  bin_width = bin_edges[1] - bin_edges[0]
+  offset = bin_width * 0.001  # Small offset to maintain monotonically increasing edges
+
+  # Create adjusted bin edges
+  adjusted_bin_edges = [edge - bin_width / 2 + offset for edge in bin_edges]
 
   # Plot the histogram using Matplotlib's hist
   plt.hist(adjusted_bin_edges, frequencies, **options)
