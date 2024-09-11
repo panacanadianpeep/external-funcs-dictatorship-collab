@@ -19,5 +19,5 @@ def Hist(histobj, **options):
     
   """
 
-  sns.histplot(histobj, x=options.x)
+  sns.histplot(histobj, x=options['x'])
 
