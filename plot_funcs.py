@@ -30,8 +30,8 @@ def Hist(histobj, **options):
     """
 
   # Extract bin edges and frequencies into separate lists
-  bin_edges = list(data_dict.keys())
-  frequencies = list(data_dict.values())
+  bin_edges = list(histobj.keys())
+  frequencies = list(histobj.values())
 
   # Sort bin edges (if not sorted)
   bin_edges.sort()
