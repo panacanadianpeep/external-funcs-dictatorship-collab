@@ -25,6 +25,18 @@ def Hist(histobj, **options):
   # Sort the Series by bin edges
   data_series = data_series.sort_index()
 
-  # Plot the histogram using Seaborn's barplot
-  sns.barplot(data_series, **options)
+  # Extract bin edges and frequencies into separate lists
+  bin_edges = list(data_series.index)
+  frequencies = list(data_series.values)
+
+  # Plot the histogram using Matplotlib's bar
+  plt.bar(bin_edges, frequencies, **options)
+
+  # Set labels and title (you can adjust them as needed)
+  plt.xlabel('Bin Edges')
+  plt.ylabel('Frequency')
+  plt.title('Histogram from Dictionary Data')
+  plt.xticks(bin_edges)
+
+  plt.show()  # Display the plot
 
