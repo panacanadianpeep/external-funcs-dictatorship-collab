@@ -19,6 +19,5 @@ def Hist(histobj, **options):
     
   """
 
-  dataset = sns.load_dataset(histobj)
+  sns.histplot(histobj, x="score")
 
-  sns.histplot(dataset, x="score")
