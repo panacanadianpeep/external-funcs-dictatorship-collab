@@ -19,28 +19,14 @@ def Hist(histobj, **options):
     
   """
 
-  # Convert the dictionary to a pandas Series
-  data_series = pd.Series(histobj)
+  freq_df = pd.DataFrame({'variable': list(histobj.d.keys()), 'frequency': list(histobj.d.values())})
+  sns.histplot(x='variable', data=freq_df, stat='frequency', element='step')
 
-  # Sort the Series by bin edges
-  data_series = data_series.sort_index()
-
-  # Extract bin edges and frequencies into separate lists
-  bin_edges = list(data_series.index)
-  frequencies = list(data_series.values)
-
-  # Calculate width between adjacent bins and shift bin edges to the left
-  bin_width = bin_edges[1] - bin_edges[0]
-  adjusted_bin_edges = [edge - bin_width / 2 for edge in bin_edges]
-
-  # Plot the histogram using Matplotlib's bar
-  plt.bar(adjusted_bin_edges, frequencies, width=bin_width, **options)
-
-  # Set labels and title (you can adjust them as needed)
-  plt.xlabel('Bin Edges')
+  plt.title('Histogram of Frequency Series')
+  plt.xlabel('Variable')
   plt.ylabel('Frequency')
-  plt.title('Histogram from Dictionary Data')
-  plt.xticks(bin_edges)
+  plt.show()
 
-  plt.show()  # Display the plot
+
+
 
