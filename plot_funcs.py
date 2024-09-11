@@ -18,4 +18,4 @@ def hist_plot(data_dict, **options):
 
     df = pd.DataFrame([data_dict])
     df = df.T
-    df.hist(data_dict)
+    df.hist()
