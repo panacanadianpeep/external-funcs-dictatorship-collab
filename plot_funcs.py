@@ -19,5 +19,12 @@ def Hist(histobj, **options):
     
   """
 
-  sns.histplot(histobj, x=options['x'])
+  # Convert the dictionary to a pandas Series
+  data_series = pd.Series(histobj)
+
+  # Sort the Series by bin edges
+  data_series = data_series.sort_index()
+
+  # Plot the histogram using Seaborn's barplot
+  sns.barplot(data_series, **options)
 
