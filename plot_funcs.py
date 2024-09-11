@@ -29,27 +29,35 @@ def Hist(histobj, **options):
         options: Additional keyword arguments passed to plt.hist
     """
 
-   # Extract bin edges and frequencies into separate lists
-  bin_edges = list(histobj.keys())
-  frequencies = list(histobj.values())
+  import matplotlib.pyplot as plt
 
-  # Sort bin edges (if not sorted)
-  bin_edges.sort()
+def hist_plot(data_dict, **options):
+    """Plots a histogram with a bar plot using Matplotlib's bar.
 
-  # Calculate bin width and offset for adjustment
-  bin_width = bin_edges[1] - bin_edges[0]
-  offset = bin_width * 0.001  # Small offset to maintain monotonically increasing edges
+    Options can be keyword args passed to plt.bar
 
-  # Create adjusted bin edges
-  adjusted_bin_edges = [edge - bin_width / 2 + offset for edge in bin_edges]
+    Args:
+        data_dict: A dictionary with bin edges as keys and frequencies as values
+        options: Additional keyword arguments passed to plt.bar
+    """
 
-  # Plot the histogram using Matplotlib's hist
-  plt.hist(adjusted_bin_edges, frequencies, **options)
+    # Extract bin edges and frequencies into separate lists
+    bin_edges = list(data_dict.keys())
+    frequencies = list(data_dict.values())
 
-  # Set labels and title (you can adjust them as needed)
-  plt.xlabel('Bin Edges')
-  plt.ylabel('Frequency')
-  plt.title('Histogram from Dictionary Data')
-  plt.xticks(bin_edges)
+    # Sort bin edges (if not sorted)
+    bin_edges.sort()
 
-  plt.show()  # Display the plot
+    # Calculate bin width and shift for adjustment
+    bin_width = bin_edges[1] - bin_edges[0]
+
+    # Plot the histogram using Matplotlib's bar
+    plt.bar(bin_edges, frequencies, width=bin_width, **options)
+
+    # Set labels and title (you can adjust them as needed)
+    plt.xlabel('Bin Edges')
+    plt.ylabel('Frequency')
+    plt.title('Histogram from Dictionary Data')
+    plt.xticks(bin_edges)
+
+    plt.show()  # Display the plot
