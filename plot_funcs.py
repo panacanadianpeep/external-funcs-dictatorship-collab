@@ -10,8 +10,7 @@ def construct_list(dictionary):
     # value number of times and return the result as a list
     dict_to_list = [key for key, value in dictionary.d.items() for _ in range(value)]
     df = pd.DataFrame(dict_to_list)
-    return np.array(dict_to_list)
-
+    return df
 def hist_plot(data_dict, **options):
     """Plots a histogram with a bar plot using Matplotlib'hist.
 
