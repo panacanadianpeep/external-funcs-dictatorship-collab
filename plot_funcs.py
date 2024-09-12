@@ -8,7 +8,7 @@ import warnings
 def construct_list(dictionary):
     # Use list comprehension to repeat the keys of the dictionary
     # value number of times and return the result as a list
-    dict_to_list =[key for key, value in dictionary.items() for _ in range(value)]
+    dict_to_list =[key for key, value in dictionary.d.items() for _ in range(value)]
     return np.array(dict_to_list)
 
 def hist_plot(data_dict, **options):
