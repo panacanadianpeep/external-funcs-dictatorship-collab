@@ -21,6 +21,7 @@ def hist_plot(data_dict, ngraphs, **options):
     """
 
     array = construct_list(data_dict)
-    nbins = len(array)
+    print(array)
+    nbins = len(data_dict.d)
     n, bins, patches = plt.hist(x=array, bins=nbins, color='#0504aa',
                             alpha=0.7, rwidth=0.85)
