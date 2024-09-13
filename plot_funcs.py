@@ -5,7 +5,7 @@ import matplotlib as matplt
 import seaborn as sns
 import warnings
 
-def construct_list(dictionary, options):
+def construct_list(dictionary):
     # Use list comprehension to repeat the keys of the dictionary
     # value number of times and return the result as a list
     dict_to_list = [key for key, value in dictionary.d.items() for _ in range(value)]
