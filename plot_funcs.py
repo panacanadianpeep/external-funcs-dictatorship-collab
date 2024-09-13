@@ -10,7 +10,7 @@ def construct_list(dictionary):
     # value number of times and return the result as a list
     dict_to_list = [key for key, value in dictionary.d.items() for _ in range(value)]
     return dict_to_list
-def hist_plot(data_dict, ngraphs, **options):
+def hist_plot(data_dict, **options):
     """Plots a histogram with a bar plot using Matplotlib'hist.
 
     Options can be keyword args passed to hist
@@ -21,7 +21,45 @@ def hist_plot(data_dict, ngraphs, **options):
     """
 
     array = construct_list(data_dict)
-    print(array)
     nbins = len(data_dict.d)
     n, bins, patches = plt.hist(x=array, bins=nbins, color='#0504aa',
                             alpha=0.7, rwidth=0.85)
+
+def Hists_Plot(datasets, **options):
+    """
+    Plot Mutiple Histograms. Takes in a list of Hist objects
+
+    Args:
+        data_dict: A list of Hist objects to plot
+        options: Additional keyword arguments passed to plt.bar
+    """
+
+    datasets_list = np.array()
+
+    for dict in datasets:
+        converted_array = construct_list(dict)
+        datalist = np.array(converted_array)
+        datasets_list = np.vstack((datasets_list, datalist))
+    
+    print(datasets_list)
+    
+    # Determine the number of rows and columns based on the number of datasets
+    nrows = len(datasets_list)  # number of rows
+    ncols = 1  # number of columns
+
+    fig, axes = plt.subplots(nrows, ncols)
+
+    # Iterate through datasets and axes to populate each subplot
+    for dataset, ax in zip(datasets_list, axes):
+        # Assume each dataset is a list of values
+        values = dataset
+
+        # Plot the histogram on the current subplot
+        ax.hist(values)
+
+    # Adjust layout parameters to avoid overlapping plots
+    plt.tight_layout()
+
+    # Show the plot
+    plt.show()
+
