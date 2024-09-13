@@ -40,6 +40,7 @@ class _DictWrapper(object):
 
     def Values(self):
         return self.d.values()
+        
 
     
 class Hist(_DictWrapper):
@@ -55,8 +56,3 @@ class Hist(_DictWrapper):
         """
 
         return self.d.get(x, 0)
-    
-    def Render(self, **options):
-        return zip(*self.SortedItems())
-
-        
