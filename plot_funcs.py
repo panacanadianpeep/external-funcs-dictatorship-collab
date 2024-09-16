@@ -32,17 +32,10 @@ def Hists_Plot(datasets, **options):
     Args:
         data_dict: A list of Hist objects to plot
         options: Additional keyword arguments passed to plt.bar
-    """
+    """ 
 
-    datasets_list = np.array()
+    datasets_list = construct_datasets_list(datasets)
 
-    for dict in datasets:
-        converted_array = construct_list(dict)
-        datalist = np.array(converted_array)
-        datasets_list = np.vstack((datasets_list, datalist))
-    
-    print(datasets_list)
-    
     # Determine the number of rows and columns based on the number of datasets
     nrows = len(datasets_list)  # number of rows
     ncols = 1  # number of columns
@@ -63,3 +56,12 @@ def Hists_Plot(datasets, **options):
     # Show the plot
     plt.show()
 
+def construct_datasets_list(listofhists):
+    datasets_list = np.empty()
+
+    for dict in listofhists:
+        converted_array = construct_list(dict)
+        datalist = np.array(converted_array)
+        datasets_list = np.vstack((datasets_list, datalist))
+    
+    return datasets_list
