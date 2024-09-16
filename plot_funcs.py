@@ -57,7 +57,7 @@ def Hists_Plot(datasets, **options):
     plt.show()
 
 def construct_datasets_list(listofhists):
-    datasets_list = np.empty()
+    datasets_list = np.empty(1)
 
     for dict in listofhists:
         converted_array = construct_list(dict)
