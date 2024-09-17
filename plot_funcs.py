@@ -50,7 +50,7 @@ def Hists_Plot(datasets, **options):
         nbins = len(values)
 
         # Plot the histogram on the current subplot
-        ax.hist(values, bin=nbins)
+        ax.hist(values, bins=nbins)
 
     # Adjust layout parameters to avoid overlapping plots
     plt.tight_layout()
