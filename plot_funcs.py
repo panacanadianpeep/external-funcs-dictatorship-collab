@@ -39,7 +39,7 @@ def Hists_Plot(datasets, **options):
 
     # Determine the number of rows and columns based on the number of datasets
     nrows = len(datasets_list)  # number of rows
-    ncols = 1  # number of columns
+    ncols = 1  # number of columns = 
 
     fig, axes = plt.subplots(nrows, ncols)
 
@@ -47,9 +47,10 @@ def Hists_Plot(datasets, **options):
     for dataset, ax in zip(datasets_list, axes):
         # Assume each dataset is a list of values
         values = dataset
+        nbins = len(values)
 
         # Plot the histogram on the current subplot
-        ax.hist(values)
+        ax.hist(values, bin=nbins)
 
     # Adjust layout parameters to avoid overlapping plots
     plt.tight_layout()
