@@ -10,6 +10,7 @@ def construct_list(dictionary):
     # value number of times and return the result as a list
     dict_to_list = [key for key, value in dictionary.d.items() for _ in range(value)]
     return dict_to_list
+
 def hist_plot(data_dict, **options):
     """Plots a histogram with a bar plot using Matplotlib'hist.
 
@@ -57,15 +58,10 @@ def Hists_Plot(datasets, **options):
     plt.show()
 
 def construct_datasets_list(listofhists):
-    count = 0
-    datasets_list = None
-    for dict in listofhists:
-        if count == 0:
-            converted_array = construct_list(dict)
-            datasets_list = np.array(converted_array)
-        else:
-            converted_array = construct_list(dict)
-            datalist = np.array(converted_array)
-            datasets_list = np.vstack((datasets_list, datalist))
-    
+    datasets_list = []
+    for specficdict in listofhists:
+      converted_array = construct_list(specficdict)
+      array = np.array(converted_array)
+      datasets_list.append(array)
+
     return datasets_list
