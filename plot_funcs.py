@@ -43,14 +43,18 @@ def Hists_Plot(datasets, **options):
 
     fig, axes = plt.subplots(nrows, ncols)
 
+    count = 0
+
     # Iterate through datasets and axes to populate each subplot
     for dataset, ax in zip(datasets_list, axes):
         # Assume each dataset is a list of values
         values = dataset
-        nbins = len(values)
+        nbins = len(datasets[0].d)
 
         # Plot the histogram on the current subplot
         ax.hist(values, bins=nbins)
+        
+        count = count + 1
 
     # Adjust layout parameters to avoid overlapping plots
     plt.tight_layout()
