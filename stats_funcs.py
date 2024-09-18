@@ -61,7 +61,6 @@ class Hist(_DictWrapper):
         """Finds the x largest numbers in a dictionary, along with their occurrences.
 
         Args:
-            self A dictionary with keys as the number and values as their occurrences
             x: The number of largest numbers to return
 
         Returns:
@@ -72,4 +71,20 @@ class Hist(_DictWrapper):
         sorted_numbers = sorted(self.d.items(), key=lambda x: x[0], reverse=True)
 
         # Return the x largest numbers and their occurrences
+        return sorted_numbers[:x]
+    
+    def Smallest(self, x):
+        """Finds the x smallest numbers in a dictionary, along with their occurrences.
+
+        Args:
+            x: The number of smallest numbers to return
+
+        Returns:
+            A list of tuples containing the x smallest numbers and their occurrences
+        """
+
+        # Sort the dictionary items in ascending order based on keys
+        sorted_numbers = sorted(self.d.items(), key=lambda x: x[0])
+
+        # Return the x smallest numbers and their occurrences
         return sorted_numbers[:x]
