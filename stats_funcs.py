@@ -64,7 +64,7 @@ class Hist(_DictWrapper):
         """
         
          # Count the occurrences of each number
-        number_occurrences = Counter(numbers_dict)
+        number_occurrences = Counter(self.d)
 
         # Return the x largest numbers based on occurrences
         return number_occurrences.most_common(x)
