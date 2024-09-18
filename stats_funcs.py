@@ -1,6 +1,7 @@
 import numpy as np
 import pandas as pd
 import matplotlib as plt
+from collections import Counter
 
 def ReadCSVfile_edgecaseenter(file_path):
     df = pd.read_csv(file_path, lineterminator='\n', low_memory=False)
@@ -56,3 +57,14 @@ class Hist(_DictWrapper):
         """
 
         return self.d.get(x, 0)
+    
+    def Largest(self, x):
+        """
+        Gets x number of Largest values
+        """
+        
+        # Count the occurrences of each number
+        number_occurrences = Counter(self.d)
+
+        # Return the x largest numbers based on occurrences
+        return [Counter.itemgetter(0)(item) for item in number_occurrences.most_common(x)]

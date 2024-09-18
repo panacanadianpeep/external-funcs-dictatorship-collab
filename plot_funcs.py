@@ -49,7 +49,7 @@ def Hists_Plot(datasets, **options):
     for dataset, ax in zip(datasets_list, axes):
         # Assume each dataset is a list of values
         values = dataset
-        nbins = len(datasets[0].d)
+        nbins = len(datasets[count].d)
 
         # Plot the histogram on the current subplot
         ax.hist(values, bins=nbins)
