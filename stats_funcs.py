@@ -87,4 +87,4 @@ class Hist(_DictWrapper):
         sorted_numbers = sorted(self.d.items(), key=lambda x: x[0])
 
         # Return the x smallest numbers and their occurrences
-        return sorted_numbers[x:]
+        return sorted_numbers[:x]
