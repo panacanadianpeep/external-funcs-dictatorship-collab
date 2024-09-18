@@ -57,14 +57,19 @@ class Hist(_DictWrapper):
         """
 
         return self.d.get(x, 0)
-    
     def Largest(self, x):
-        """
-        Gets x number of Largest values
-        """
-        
-         # Count the occurrences of each number
-        number_occurrences = Counter(self.d)
+        """Finds the x largest numbers in a dictionary, along with their occurrences.
 
-        # Return the x largest numbers based on occurrences
-        return number_occurrences.most_common(x)
+        Args:
+            self A dictionary with keys as the number and values as their occurrences
+            x: The number of largest numbers to return
+
+        Returns:
+            A list of tuples containing the x largest numbers and their occurrences
+        """
+
+        # Sort the dictionary items in descending order based on keys
+        sorted_numbers = sorted(self.d.items(), key=lambda x: x[0], reverse=True)
+
+        # Return the x largest numbers and their occurrences
+        return sorted_numbers[:x]
