@@ -63,8 +63,8 @@ class Hist(_DictWrapper):
         Gets x number of Largest values
         """
         
-        # Count the occurrences of each number
-        number_occurrences = Counter(self.d)
+         # Count the occurrences of each number
+        number_occurrences = Counter(numbers_dict)
 
         # Return the x largest numbers based on occurrences
-        return [Counter.itemgetter(0)(item) for item in number_occurrences.most_common(x)]
+        return number_occurrences.most_common(x)
