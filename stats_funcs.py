@@ -86,5 +86,8 @@ class Hist(_DictWrapper):
         # Sort the dictionary keys in ascending order
         sorted_keys = sorted(self.d.keys())
 
-        # Return the x smallest numbers and their occurrences
-        return [(key, self.d[key]) for key in sorted_keys[0:x]]
+        # Ensure that x is within the correct bounds
+        x = min(x, len(sorted_keys))
+
+        # Return the x smallest keys and their occurrences, rounding keys for display
+        return [(round(key, 6), self.d[key]) for key in sorted_keys[:x]]
