@@ -68,7 +68,7 @@ class Hist(_DictWrapper):
         """
 
         # Sort the dictionary keys in ascending order
-        sorted_keys = sorted(self.d.keys())
+        sorted_keys = sorted(self.d.keys(), reverse=True)
 
         # Return the x smallest numbers and their occurrences
         return [(key, self.d[key]) for key in sorted_keys[:x]]
