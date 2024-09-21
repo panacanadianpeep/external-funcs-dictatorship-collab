@@ -67,10 +67,13 @@ class Hist(_DictWrapper):
             A list of tuples containing the x largest numbers and their occurrences
         """
 
-        # Sort the dictionary keys in ascending order
+ # Sort the dictionary keys in ascending order
         sorted_keys = sorted(self.d.keys(), reverse=True)
 
-        # Return the x smallest numbers and their occurrences
+        # Ensure that x is within the correct bounds
+        x = min(x, len(sorted_keys))
+
+        # Return the x smallest keys and their occurrences without any formatting issues
         return [(key, self.d[key]) for key in sorted_keys[:x]]
     
     def Smallest(self, x):
