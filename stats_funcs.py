@@ -89,10 +89,6 @@ class Hist(_DictWrapper):
         # Ensure that x is within the correct bounds
         x = min(x, len(sorted_keys))
 
-        # Return the x smallest keys and their occurrences without rounding
-        for key in sorted_keys[:x]:
-            print(f"Key: {repr(key)}, Value: {self.d[key]}")
-
-        # Return the result as usual
+        # Return the x smallest keys and their occurrences without any formatting issues
         return [(key, self.d[key]) for key in sorted_keys[:x]]
 
