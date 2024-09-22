@@ -137,3 +137,11 @@ class Pmf(_DictWrapper):
     
     def __getitem__(self, value, default=0):
         return self.d.get(value, default)
+    
+class Cdf:
+    def temp_to_delete():
+        pass
+
+class Pdf:
+    def temp_to_delete():
+        pass
