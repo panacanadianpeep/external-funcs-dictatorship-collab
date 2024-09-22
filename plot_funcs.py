@@ -31,7 +31,7 @@ def Hists_Plot(datasets, **options):
     Plot Mutiple Histograms. Takes in a list of Hist objects
 
     Args:
-        data_dict: A list of Hist objects to plot
+        datasets: A list of Hist objects to plot
         options: Additional keyword arguments passed to plt.bar
     """ 
 

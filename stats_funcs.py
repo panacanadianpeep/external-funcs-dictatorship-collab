@@ -25,13 +25,19 @@ class _DictWrapper(object):
 
         if obj is None:
             return
-
+        
+        if isinstance(obj, (_DictWrapper, Cdf, Pdf)):
+            self.label = label if label is not None else obj.label
         if isinstance(obj, pd.Series):
             self.d.update(obj.value_counts().items())
         elif isinstance(obj, dict):
-            print(obj, "dict")
+            self.d.update(obj.items())
         else:
-            print("list/Hist(Pmf, Cdf, Pdf, not included)")
+            # finally, treat it like a list
+            self.d.update(Counter(obj))
+        if len(self) > 0 and isinstance(self, Pmf):
+            self.Normalize()
+
 
     def __getitem__(self, value):
         return self.d.get(value, 0)
@@ -57,6 +63,7 @@ class Hist(_DictWrapper):
         """
 
         return self.d.get(x, 0)
+    
     def Largest(self, x):
         """Finds the x largest numbers in a dictionary, along with their occurrences.
 
@@ -67,7 +74,7 @@ class Hist(_DictWrapper):
             A list of tuples containing the x largest numbers and their occurrences
         """
 
- # Sort the dictionary keys in ascending order
+        # Sort the dictionary keys in ascending order
         sorted_keys = sorted(self.d.keys(), reverse=True)
 
         # Ensure that x is within the correct bounds
@@ -95,3 +102,38 @@ class Hist(_DictWrapper):
         # Return the x smallest keys and their occurrences without any formatting issues
         return [(key, self.d[key]) for key in sorted_keys[:x]]
 
+class Pmf(_DictWrapper):
+    def Normalize(self, fraction = 1):
+        """Normalizes this PMF so the sum of all probs is fraction.
+
+        Args:
+            fraction: what the total should be after normalization
+
+        Returns: the total probability before normalizing
+        """
+        if self.log:
+            raise ValueError("Normalize: Pmf is under a log transform")
+
+        total = self.Total()
+        if total == 0:
+            raise ValueError("Normalize: total probability is zero.")
+
+        factor = fraction / total
+        for x in self.d:
+            self.d[x] *= factor
+
+        return total
+    
+    def Prob(self, x, default=0):
+        """Find proabibilities of a specfic PMF item in the PMNF dictonary
+        Args:
+            x: the value for the prob function to find
+            default: the default value to return if not found in the function
+        
+        Returns: Proabibility of a specfic item
+        """
+
+        return self.d.get(x, default)
+    
+    def __getitem__(self, value, default=0):
+        return self.d.get(value, default)
