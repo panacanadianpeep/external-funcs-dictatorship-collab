@@ -54,6 +54,12 @@ class _DictWrapper(object):
         """Returns the total of the frequencies/probabilities in the map."""
         total = sum(self.d.values())
         return total
+    
+    def Incr(self, x, term=1):
+        self.d[x] = self.d.get(x, 0) + term
+
+    def Mult(self, x, factor = 1):
+        self.d[x] = self.d.get(x, 0) * factor
         
 
     
@@ -108,12 +114,6 @@ class Hist(_DictWrapper):
 
         # Return the x smallest keys and their occurrences without any formatting issues
         return [(key, self.d[key]) for key in sorted_keys[:x]]
-    
-    def Incr(self, x, term=1):
-        self.d[x] = self.d.get(x, 0) + term
-
-    def Mult(self, x, factor = 1):
-        self.d[x] = self.d.get(x, 0) * factor
 
 
 
