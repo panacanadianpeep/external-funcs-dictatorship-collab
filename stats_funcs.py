@@ -108,6 +108,14 @@ class Hist(_DictWrapper):
 
         # Return the x smallest keys and their occurrences without any formatting issues
         return [(key, self.d[key]) for key in sorted_keys[:x]]
+    
+    def Incr(self, x, term=1):
+        self.d[x] = self.d.get(x, 0) + term
+
+    def Mult(self, x, factor = 1):
+        self.d[x] = self.d.get(x, 0) * factor
+
+
 
 class Pmf(_DictWrapper):
     def Normalize(self, fraction = 1):
