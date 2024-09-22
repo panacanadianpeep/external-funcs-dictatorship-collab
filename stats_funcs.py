@@ -28,7 +28,7 @@ class _DictWrapper(object):
         
         if isinstance(obj, (_DictWrapper, Cdf, Pdf)):
             self.label = label if label is not None else obj.label
-        if isinstance(obj, pd.Series):
+        elif isinstance(obj, pd.Series):
             self.d.update(obj.value_counts().items())
         elif isinstance(obj, dict):
             self.d.update(obj.items())
@@ -38,6 +38,8 @@ class _DictWrapper(object):
         if len(self) > 0 and isinstance(self, Pmf):
             self.Normalize()
 
+    def __len__(self):
+        return len(self.d)
 
     def __getitem__(self, value):
         return self.d.get(value, 0)
