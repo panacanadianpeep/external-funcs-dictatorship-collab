@@ -49,6 +49,11 @@ class _DictWrapper(object):
 
     def Values(self):
         return self.d.values()
+    
+    def Total(self):
+        """Returns the total of the frequencies/probabilities in the map."""
+        total = sum(self.d.values())
+        return total
         
 
     
