@@ -2,6 +2,7 @@ import numpy as np
 import pandas as pd
 import matplotlib as plt
 from collections import Counter
+import copy
 
 def ReadCSVfile_edgecaseenter(file_path):
     df = pd.read_csv(file_path, lineterminator='\n', low_memory=False)
@@ -49,6 +50,21 @@ class _DictWrapper(object):
 
     def Values(self):
         return self.d.values()
+    
+    def Copy(self, label=None):
+        """Returns a copy.
+
+        Make a shallow copy of d.  If you want a deep copy of d,
+        use copy.deepcopy on the whole object.
+
+        label: string label for the new Hist
+
+        returns: new _DictWrapper with the same type
+        """
+        new = copy.copy(self)
+        new.d = copy.copy(self.d)
+        new.label = label if label is not None else self.label
+        return new
     
     def Total(self):
         """Returns the total of the frequencies/probabilities in the map."""
