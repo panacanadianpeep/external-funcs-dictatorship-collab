@@ -4,12 +4,17 @@ import matplotlib.pyplot as plt
 import matplotlib as matplt
 import seaborn as sns
 import warnings
+from collections import Counter
 
 def construct_list(dictionary):
     # Use list comprehension to repeat the keys of the dictionary
     # value number of times and return the result as a list
-    dict_to_list = [key for key, value in dictionary.d.items() for _ in range(value)]
-    return dict_to_list
+    try:
+        dict_to_list = [key for key, value in dictionary.d.items() for _ in range(value)]
+        return dict_to_list
+    except:
+        dict_to_list = Counter(dictionary)
+        dict_to_list.elements()
 
 def hist_plot(data_dict, **options):
     """Plots a histogram with a bar plot using Matplotlib'hist.
