@@ -19,8 +19,39 @@ def construct_list(dictionary):
 
 def pmf_plot(data_dict, **options):
     keys, probabilities = construct_list(data_dict)
-    plt.figure(figsize=(8, 5))
-    plt.bar(keys, probabilities, width=0.1, color='blue', alpha=0.7)   
+    # Calculate the range of the keys and determine optimal bar width
+    key_range = max(keys) - min(keys)
+    num_keys = len(keys)
+    
+    # Set bar width as a fraction of the range to avoid overlap (adjust factor as needed)
+    if num_keys > 1:
+        bar_width = (key_range / num_keys) * 0.8  # Adjust bar width to be 80% of the gap between keys
+    else:
+        bar_width = 0.1  # Default bar width if only one key
+    
+    # Dynamically adjust the figure size based on the number of keys
+    fig_width = max(8, num_keys * 0.5)
+    fig_height = 6
+    plt.figure(figsize=(fig_width, fig_height))
+    
+    # Create the bar plot
+    plt.bar(keys, probabilities, width=bar_width, color='blue', alpha=0.7)
+
+    # Label the axes
+    plt.xlabel('Values')
+    plt.ylabel('Probability')
+
+    # Set title
+    plt.title('Probability Mass Function')
+
+    # Dynamically adjust x-axis ticks to prevent overlap
+    plt.xticks(keys, rotation=45, ha='right')
+
+    # Automatically adjust layout to prevent label cutoff
+    plt.tight_layout()
+    
+    # Show the plot
+    plt.show()
 
 def hist_plot(data_dict, **options):
     """Plots a histogram with a bar plot using Matplotlib'hist.
