@@ -47,6 +47,9 @@ def pmf_plot(data_dict, **options):
     # Dynamically adjust x-axis ticks to prevent overlap
     plt.xticks(keys, rotation=45, ha='right')
 
+        # Adjust y-axis limits to provide some padding, ensuring bars are visible
+    plt.ylim(0, max(probabilities) * 1.1)  # Add 10% padding to the tallest bar
+
     # Automatically adjust layout to prevent label cutoff
     plt.tight_layout()
     
