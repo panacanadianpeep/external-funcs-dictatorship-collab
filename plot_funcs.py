@@ -9,16 +9,17 @@ from collections import Counter
 def construct_list(dictionary):
     # Use list comprehension to repeat the keys of the dictionary
     # value number of times and return the result as a list
-    try:
-        dict_to_list = [key for key, value in dictionary.d.items() for _ in range(value)]
-        return dict_to_list
-    except:
-        keys = list(dictionary.d.keys())
-        probabilities = list(dictionary.d.values())
-        return keys, probabilities
+    dict_to_list = [key for key, value in dictionary.d.items() for _ in range(value)]
+    return dict_to_list
 
 def pmf_plot(data_dict, **options):
-    keys, probabilities = construct_list(data_dict)
+
+    # Filter out keys with zero or negligible probabilities
+    keys, probabilities = zip(*[(k, p) for k, p in self.d.items() if p > 0])
+
+    keys = np.array(keys)
+    probabilities = np.array(probabilities)
+    
     # Calculate the range of the keys and determine optimal bar width
     key_range = max(keys) - min(keys)
     num_keys = len(keys)
