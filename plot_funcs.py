@@ -15,7 +15,7 @@ def construct_list(dictionary):
 def pmf_plot(data_dict, **options):
 
     # Filter out keys with zero or negligible probabilities
-    keys, probabilities = zip(*[(k, p) for k, p in self.d.items() if p > 0])
+    keys, probabilities = zip(*[(k, p) for k, p in data_dict.d.items() if p > 0])
 
     keys = np.array(keys)
     probabilities = np.array(probabilities)
