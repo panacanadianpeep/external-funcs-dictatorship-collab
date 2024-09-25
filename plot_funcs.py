@@ -13,16 +13,14 @@ def construct_list(dictionary):
         dict_to_list = [key for key, value in dictionary.d.items() for _ in range(value)]
         return dict_to_list
     except:
-        keys = list(dictionary.keys())
-        probabilities = list(dictionary.values())
+        keys = list(dictionary.d.keys())
+        probabilities = list(dictionary.d.values())
         return keys, probabilities
 
 def pmf_plot(data_dict, **options):
     keys, probabilities = construct_list(data_dict)
     plt.figure(figsize=(8, 5))
-    plt.bar(keys, probabilities, width=0.1, color='blue', alpha=0.7)
-
-        
+    plt.bar(keys, probabilities, width=0.1, color='blue', alpha=0.7)   
 
 def hist_plot(data_dict, **options):
     """Plots a histogram with a bar plot using Matplotlib'hist.
