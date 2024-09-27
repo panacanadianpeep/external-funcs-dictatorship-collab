@@ -113,7 +113,7 @@ def Hists_Plot(datasets, **options):
 
         # Set title
         if "title" in options:
-            ax.title(options["title"])
+            ax.set_title(options["title"])
             
         count = count + 1
 
