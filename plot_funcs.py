@@ -107,9 +107,9 @@ def Hists_Plot(datasets, **options):
         ax.hist(values, bins=nbins)
 
         if "xlabel" in options:
-            ax.xlabel(options["xlabel"])
+            ax.set_xlabel(options["xlabel"])
         if "ylabel" in options:
-            ax.ylabel(options["ylabel"])
+            ax.set_ylabel(options["ylabel"])
 
         # Set title
         if "title" in options:
