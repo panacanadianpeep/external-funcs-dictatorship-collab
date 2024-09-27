@@ -105,20 +105,20 @@ def Hists_Plot(datasets, **options):
 
         # Plot the histogram on the current subplot
         ax.hist(values, bins=nbins)
-        
+
+        if "xlabel" in options:
+            ax.xlabel(options["xlabel"])
+        if "ylabel" in options:
+            ax.ylabel(options["ylabel"])
+
+        # Set title
+        if "title" in options:
+            ax.title(options["title"])
+            
         count = count + 1
 
     # Adjust layout parameters to avoid overlapping plots
     plt.tight_layout()
-
-    if "xlabel" in options:
-        plt.xlabel(options["xlabel"])
-    if "ylabel" in options:
-        plt.ylabel(options["ylabel"])
-
-    # Set title
-    if "title" in options:
-        plt.title(options["title"])
 
     # Show the plot
     plt.show()
