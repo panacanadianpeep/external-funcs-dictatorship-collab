@@ -38,13 +38,6 @@ def pmf_plot(data_dict, **options):
     # Create the bar plot
     plt.bar(keys, probabilities, width=bar_width, color='blue', alpha=0.7)
 
-    # Label the axes
-    plt.xlabel('Values')
-    plt.ylabel('Probability')
-
-    # Set title
-    plt.title('Probability Mass Function')
-
     # Dynamically adjust x-axis ticks to prevent overlap
     plt.xticks(keys, rotation=45, ha='right')
 
@@ -56,6 +49,7 @@ def pmf_plot(data_dict, **options):
     
     # Show the plot
     plt.show()
+    
 
 def hist_plot(data_dict, **options):
     """Plots a histogram with a bar plot using Matplotlib'hist.
@@ -73,8 +67,10 @@ def hist_plot(data_dict, **options):
                             alpha=0.7, rwidth=0.85)
     
     # Label the axes
-    plt.xlabel(options["xlabel"])
-    plt.ylabel(options["ylabel"])
+    if "xlabel" in options:
+        plt.xlabel(options["xlabel"])
+    if "ylabel" in options:
+        plt.ylabel(options["ylabel"])
 
     # Set title
     plt.title(options=["title"])
