@@ -112,8 +112,8 @@ def Hists_Plot(datasets, **options):
             ax.set_ylabel(options["ylabel"])
 
         # Set title
-        if "title" in options:
-            ax.set_title(options["title"])
+        if "title" in options and len(options["title"]) <= nrows:
+            ax.set_title(options["title"][count])
             
         count = count + 1
 
