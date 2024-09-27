@@ -73,7 +73,8 @@ def hist_plot(data_dict, **options):
         plt.ylabel(options["ylabel"])
 
     # Set title
-    plt.title(options=["title"])
+    if "title" in options:
+        plt.title(options=["title"])
 
     plt.show()
 
