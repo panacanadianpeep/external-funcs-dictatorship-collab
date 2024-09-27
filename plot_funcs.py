@@ -111,6 +111,15 @@ def Hists_Plot(datasets, **options):
     # Adjust layout parameters to avoid overlapping plots
     plt.tight_layout()
 
+    if "xlabel" in options:
+        plt.xlabel(options["xlabel"])
+    if "ylabel" in options:
+        plt.ylabel(options["ylabel"])
+
+    # Set title
+    if "title" in options:
+        plt.title(options["title"])
+
     # Show the plot
     plt.show()
 
