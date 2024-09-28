@@ -46,6 +46,16 @@ def pmf_plot(data_dict, **options):
 
     # Automatically adjust layout to prevent label cutoff
     plt.tight_layout()
+
+     # Label the axes
+    if "xlabel" in options:
+        plt.xlabel(options["xlabel"])
+    if "ylabel" in options:
+        plt.ylabel(options["ylabel"])
+
+    # Set title
+    if "title" in options:
+        plt.title(options["title"]) 
     
     # Show the plot
     plt.show()
