@@ -2,7 +2,6 @@ import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 import matplotlib as matplt
-import seaborn as sns
 import warnings
 from collections import Counter
 
@@ -11,6 +10,42 @@ def construct_list(dictionary):
     # value number of times and return the result as a list
     dict_to_list = [key for key, value in dictionary.d.items() for _ in range(value)]
     return dict_to_list
+
+def plot_multiple_pmfs(pmf_list, titles):
+    """
+    Plots multiple PMFs in a single figure with subplots.
+    
+    Args:
+        pmf_list (list of dict): List of PMFs (each PMF is a dictionary).
+        titles (list of str): List of titles for each subplot.
+    """
+    num_pmfs = len(pmf_list)
+    
+    # Create a figure and subplots, with 1 row and 'num_pmfs' columns
+    fig, axes = plt.subplots(1, num_pmfs, figsize=(5 * num_pmfs, 5))
+
+    # Loop over each PMF and corresponding title to plot each
+    for i, (pmf, title) in enumerate(zip(pmf_list, titles)):
+        keys = np.array(list(pmf.keys()))
+        probabilities = np.array(list(pmf.values()))
+        
+        # Plot the PMF on the ith subplot
+        axes[i].bar(keys, probabilities, width=(max(keys) - min(keys)) / len(keys) * 0.8, color='blue', alpha=0.7)
+        axes[i].set_title(title)
+        axes[i].set_xlabel('Values')
+        axes[i].set_ylabel('Probability')
+
+        # Adjust x-axis ticks for clarity
+        axes[i].set_xticks(keys)
+        axes[i].tick_params(axis='x', rotation=45)
+        
+        # Add y-axis padding
+        axes[i].set_ylim(0, max(probabilities) * 1.1)
+    
+    # Automatically adjust layout to prevent overlap
+    plt.tight_layout()
+    plt.show()
+    
 
 def pmf_plot(data_dict, **options):
 
@@ -59,7 +94,8 @@ def pmf_plot(data_dict, **options):
     
     # Show the plot
     plt.show()
-    
+
+     
 
 def hist_plot(data_dict, **options):
     """Plots a histogram with a bar plot using Matplotlib'hist.
