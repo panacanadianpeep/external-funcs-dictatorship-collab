@@ -26,8 +26,8 @@ def plot_multiple_pmfs(pmf_list, titles):
 
     # Loop over each PMF and corresponding title to plot each
     for i, (pmf, title) in enumerate(zip(pmf_list, titles)):
-        keys = np.array(list(pmf.keys()))
-        probabilities = np.array(list(pmf.values()))
+        keys = np.array(list(pmf.d.keys()))
+        probabilities = np.array(list(pmf.d.values()))
         
         # Plot the PMF on the ith subplot
         axes[i].bar(keys, probabilities, width=(max(keys) - min(keys)) / len(keys) * 0.8, color='blue', alpha=0.7)
