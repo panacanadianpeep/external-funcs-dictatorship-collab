@@ -200,6 +200,6 @@ def PrePlot(nplots, **options):
     if "figheight" in options:
         figheight = options["figheight"]
 
-    fig, axes = plt.subplots(1, nplots, figsize=(figheight, figwidth))
+    fig, axes = plt.subplots(1, nplots)
 
-    
+
