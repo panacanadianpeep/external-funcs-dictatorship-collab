@@ -3,6 +3,8 @@ import pandas as pd
 import matplotlib as plt
 from collections import Counter
 import copy
+import bisect
+import logging
 
 def ReadCSVfile_edgecaseenter(file_path):
     df = pd.read_csv(file_path, lineterminator='\n', low_memory=False)
@@ -154,6 +156,7 @@ class Pmf(_DictWrapper):
             self.d[x] *= factor
 
         return total
+
     
     def Prob(self, x, default=0):
         """Find proabibilities of a specfic PMF item in the PMNF dictonary
@@ -170,8 +173,67 @@ class Pmf(_DictWrapper):
         return self.d.get(value, default)
     
 class Cdf:
-    def temp_to_delete():
-        pass
+    """Represents a cumulative distribution function.
+
+    Attributes:
+        xs: sequence of values
+        ps: sequence of probabilities
+        label: string used as a graph label.
+    """
+
+    def __init__(self, obj=None, ps=None, label=None):
+        """Initializes.
+
+        If ps is provided, obj must be the corresponding list of values.
+
+        obj: Hist, Pmf, Cdf, Pdf, dict, pandas Series, list of pairs
+        ps: list of cumulative probabilities
+        label: string label
+        """
+        self.label = label if label is not None else DEFAULT_LABEL
+
+        if isinstance(obj, (_DictWrapper, Cdf, Pdf)):
+            if not label:
+                self.label = label if label is not None else obj.label
+
+        if obj is None:
+            # caller does not provide obj, make an empty Cdf
+            self.xs = np.asarray([])
+            self.ps = np.asarray([])
+            if ps is not None:
+                logging.warning("Cdf: can't pass ps without also passing xs.")
+            return
+        else:
+            # if the caller provides xs and ps, just store them
+            if ps is not None:
+                if isinstance(ps, str):
+                    logging.warning("Cdf: ps can't be a string")
+
+                self.xs = np.asarray(obj)
+                self.ps = np.asarray(ps)
+                return
+
+        # caller has provided just obj, not ps
+        if isinstance(obj, Cdf):
+            self.xs = copy.copy(obj.xs)
+            self.ps = copy.copy(obj.ps)
+            return
+
+        if isinstance(obj, _DictWrapper):
+            dw = obj
+        else:
+            dw = Hist(obj)
+
+        if len(dw) == 0:
+            self.xs = np.asarray([])
+            self.ps = np.asarray([])
+            return
+
+        xs, freqs = zip(*sorted(dw.Items()))
+        self.xs = np.asarray(xs)
+        self.ps = np.cumsum(freqs, dtype=float)
+        self.ps /= self.ps[-1]
+
 
 class Pdf:
     def temp_to_delete():

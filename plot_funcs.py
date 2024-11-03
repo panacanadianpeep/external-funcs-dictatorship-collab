@@ -177,3 +177,29 @@ def construct_datasets_list(listofhists):
       datasets_list.append(array)
 
     return datasets_list
+
+def Cdf_Plot(cdf_data, **options):
+    fig = plt.figure(figsize="9, 4")
+
+#code_V2:
+
+def PrePlot(nplots, **options):
+    """
+    Sets different parameters to be parsed to the graph
+
+    Args:
+        nplots: How many plots to graph
+        options: Additional keyword arguments passed to plts
+    """ 
+
+    figwidth = None
+    figheight = None
+
+    if "figwidth" in options:
+        figwidth = options["figwidth"]
+    if "figheight" in options:
+        figheight = options["figheight"]
+
+    fig, axes = plt.subplots(1, nplots, figsize=(figheight, figwidth))
+
+    
